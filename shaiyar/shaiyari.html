@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiranwal's Shaiyar</title>
+  <meta name="description" content="Hiranwal's Shaiyar - Hindi poetry and village culture with modern graphics.">
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #f8b500;
+      --secondary: #6e8246;
+      --accent: #ff6f3c;
+      --bg-gradient: linear-gradient(135deg, #fffbe7 0%, #f8b500 100%);
+      --glass-bg: rgba(255,255,255,0.75);
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --border-radius: 18px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Hind', sans-serif;
+      background: var(--bg-gradient);
+      color: #2d2d2d;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #f8b500 60%, #ff6f3c 100%);
+      color: #fff;
+      padding: 3rem 1rem 2rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://svgshare.com/i/16oX.svg') repeat-x bottom;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 8px #0002;
+    }
+    header p {
+      font-size: 1.3rem;
+      margin-top: 0.7rem;
+      font-style: italic;
+      color: #fffbe7;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #ffeac2;
+    }
+    nav a {
+      color: #6e8246;
+      font-weight: bold;
+      font-size: 1.08rem;
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    main {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 2rem;
+      background: var(--glass-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+      position: relative;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .section-title::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url('https://svgshare.com/i/16p1.svg') no-repeat center/contain;
+      display: inline-block;
+    }
+    .poem-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 14px;
+      box-shadow: 0 2px 16px #ffedc1b0;
+      margin-bottom: 2rem;
+      padding: 1.3rem 2rem;
+      position: relative;
+      transition: transform 0.2s;
+      border-left: 7px solid var(--primary);
+      animation: fadeInUp 0.7s;
+    }
+    .poem-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 32px #ffedc1ee;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .poem-meta {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .poem-text {
+      font-size: 1.15rem;
+      color: #4b3f1b;
+      margin-bottom: 0.8rem;
+      line-height: 1.7;
+      font-family: 'Hind', serif;
+    }
+    .poem-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .poem-actions button {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 7px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #f8b50022;
+    }
+    .poem-actions button:hover {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 4px 16px #f8b50044;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #f8b50044;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid #fffbe7;
+      background: #fffbe7;
+    }
+    .gallery img:hover {
+      transform: scale(1.04) rotate(-2deg);
+      box-shadow: 0 8px 32px #f8b50099;
+      border-color: var(--primary);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      padding: 0.8rem;
+      border-radius: 7px;
+      border: 1.5px solid #e2d3b3;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fffbe7;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid var(--primary);
+      outline: none;
+    }
+    button[type="submit"] {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 7px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 12px #f8b50022;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      box-shadow: 0 4px 24px #f8b50044;
+    }
+    .comments {
+      margin-top: 1rem;
+      background: #fffbe7cc;
+      border-radius: 7px;
+      padding: 1rem;
+      border: 1px solid #ffeac2;
+      font-size: 1rem;
+      animation: fadeInUp 0.7s;
+    }
+    .comment {
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--primary);
+      padding-bottom: 0.5rem;
+    }
+    .custom-illustration {
+      width: 100%;
+      max-width: 320px;
+      margin: 1.5rem auto 2rem auto;
+      display: block;
+      filter: drop-shadow(0 8px 32px #f8b50044);
+      animation: float 3s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      from { transform: translateY(0);}
+      to { transform: translateY(-18px);}
+    }
+    /* Responsive */
+    @media (max-width: 800px) {
+      main { padding: 1rem;}
+      .section-title { font-size: 1.3rem;}
+      .gallery { grid-template-columns: 1fr 1fr;}
+    }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr;}
+      header h1 { font-size: 2rem;}
+      main { padding: 0.5rem;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hiranwal's Shaiyar</h1>
+    <p>गांव की मिट्टी, हिरन की चाल और शायरी की बात – एक साथ</p>
+    <img src="https://svgshare.com/i/16oY.svg" alt="Village Illustration" class="custom-illustration" />
+  </header>
+  <nav>
+    <a href="#daily-poetry">डेली शायरी</a>
+    <a href="#collection">शायरी संग्रह</a>
+    <a href="#about">लेखक</a>
+    <a href="#gallery">गैलरी</a>
+    <a href="#submit">अपनी शायरी</a>
+    <a href="#contact">संपर्क</a>
+  </nav>
+  <main>
+    <!-- Daily Poetry -->
+    <section id="daily-poetry">
+      <div class="section-title">आज की शायरी</div>
+      <div class="poem-card" id="daily-poem">
+        <div class="poem-meta">लेखक: हिरनवाल | श्रेणी: गाँव</div>
+        <div class="poem-text">
+          मिट्टी की खुशबू, खेतों की बात,<br>
+          हिरन की चाल, गाँव की सौगात।<br>
+          हर सुबह नई उम्मीद लाती,<br>
+          शायरी में बसती गाँव की बात।
+        </div>
+        <div class="poem-actions">
+          <button onclick="sharePoem('daily-poem')">शेयर करें</button>
+        </div>
+        <div class="comments" id="comments-daily">
+          <strong>टिप्पणियाँ:</strong>
+        </div>
+        <form onsubmit="addComment(event, 'comments-daily')">
+          <input type="text" placeholder="अपना नाम" required>
+          <textarea rows="2" placeholder="अपनी टिप्पणी लिखें" required></textarea>
+          <button type="submit">टिप्पणी जोड़ें</button>
+        </form>
+      </div>
+    </section>
+    <!-- Poetry Collection -->
+    <section id="collection">
+      <div class="section-title">शायरी संग्रह</div>
+      <div class="poem-card" id="poem1">
+        <div class="poem-meta">लेखक: हिरनवाल | श्रेणी: प्रेम</div>
+        <div class="poem-text">
+          तेरी मुस्कान में बसी है गाँव की रौनक,<br>
+          तेरे बिना सूना-सूना सा लगता है मन।
+        </div>
+        <div class="poem-actions">
+          <button onclick="sharePoem('poem1')">शेयर करें</button>
+        </div>
+        <div class="comments" id="comments-poem1"></div>
+        <form onsubmit="addComment(event, 'comments-poem1')">
+          <input type="text" placeholder="अपना नाम" required>
+          <textarea rows="2" placeholder="अपनी टिप्पणी लिखें" required></textarea>
+          <button type="submit">टिप्पणी जोड़ें</button>
+        </form>
+      </div>
+      <div class="poem-card" id="poem2">
+        <div class="poem-meta">लेखक: हिरनवाल | श्रेणी: जीवन</div>
+        <div class="poem-text">
+          जीवन की राहों में गाँव की याद,<br>
+          हर मोड़ पर मिलती है अपनों की बात।
+        </div>
+        <div class="poem-actions">
+          <button onclick="sharePoem('poem2')">शेयर करें</button>
+        </div>
+        <div class="comments" id="comments-poem2"></div>
+        <form onsubmit="addComment(event, 'comments-poem2')">
+          <input type="text" placeholder="अपना नाम" required>
+          <textarea rows="2" placeholder="अपनी टिप्पणी लिखें" required></textarea>
+          <button type="submit">टिप्पणी जोड़ें</button>
+        </form>
+      </div>
+    </section>
+    <!-- About the Poet -->
+    <section id="about">
+      <div class="section-title">लेखक के बारे में</div>
+      <p>
+        हिरनवाल, एक ग्रामीण कवि, जिनकी शायरी में गाँव की मिट्टी, खेत, हिरन और ग्रामीण जीवन की सादगी झलकती है।<br>
+        उनका मानना है कि शायरी सिर्फ शब्द नहीं, बल्कि गाँव की आत्मा है।
+      </p>
+    </section>
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="section-title">गैलरी</div>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="गाँव">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="हिरन">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="खेत">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="ग्रामीण जीवन">
+      </div>
+    </section>
+    <!-- Submit Your Poetry -->
+    <section id="submit">
+      <div class="section-title">अपनी शायरी भेजें</div>
+      <form id="poetry-submit-form" onsubmit="submitPoetry(event)">
+        <input type="text" id="poet-name" placeholder="आपका नाम" required>
+        <textarea id="poet-poem" rows="4" placeholder="अपनी शायरी लिखें" required></textarea>
+        <button type="submit">शायरी भेजें</button>
+      </form>
+      <div id="user-poems"></div>
+    </section>
+    <!-- Contact Form -->
+    <section id="contact">
+      <div class="section-title">संपर्क करें</div>
+      <form id="contact-form" onsubmit="contactForm(event)">
+        <input type="text" id="contact-name" placeholder="नाम" required>
+        <input type="email" id="contact-email" placeholder="ईमेल" required>
+        <textarea id="contact-message" rows="3" placeholder="संदेश" required></textarea>
+        <button type="submit">भेजें</button>
+      </form>
+      <div id="contact-response"></div>
+    </section>
+  </main>
+  <footer style="text-align:center; padding:1.5rem; background:linear-gradient(90deg,#f8b500,#ff6f3c); color:#fff; border-radius:0 0 18px 18px; font-size:1.1rem;">
+    &copy; 2025 Hiranwal's Shaiyar | गाँव की खुशबू, शायरी की मिठास
+  </footer>
+  <script>
+    // Share poem functionality (simple copy to clipboard)
+    function sharePoem(poemId) {
+      const poemCard = document.getElementById(poemId);
+      const poemText = poemCard.querySelector('.poem-text').innerText;
+      navigator.clipboard.writeText(poemText);
+      alert("शायरी कॉपी हो गई! अब आप इसे शेयर कर सकते हैं।");
+    }
+    // Comment functionality
+    function addComment(event, commentSectionId) {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.querySelector('input').value.trim();
+      const comment = form.querySelector('textarea').value.trim();
+      if (name && comment) {
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = `<strong>${name}:</strong> ${comment}`;
+        document.getElementById(commentSectionId).appendChild(commentDiv);
+        form.reset();
+      }
+    }
+    // Poetry submission functionality (adds to user-poems section)
+    function submitPoetry(event) {
+      event.preventDefault();
+      const name = document.getElementById('poet-name').value.trim();
+      const poem = document.getElementById('poet-poem').value.trim();
+      if (name && poem) {
+        const poemDiv = document.createElement('div');
+        poemDiv.className = 'poem-card';
+        poemDiv.innerHTML = `
+          <div class="poem-meta">लेखक: ${name} | यूजर शायरी</div>
+          <div class="poem-text">${poem.replace(/\n/g, '<br>')}</div>
+        `;
+        document.getElementById('user-poems').prepend(poemDiv);
+        document.getElementById('poetry-submit-form').reset();
+      }
+    }
+    // Contact form (demo only)
+    function contactForm(event) {
+      event.preventDefault();
+      document.getElementById('contact-response').innerText = "आपका संदेश भेज दिया गया है। धन्यवाद!";
+      document.getElementById('contact-form').reset();
+    }
+  </script>
+</body>
+</html>
